@@ -5,6 +5,9 @@ int main()
 	// Create SFML window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFblock");
 
+	// Enable vertical sync to reduce CPU usage
+	window.setVerticalSyncEnabled(true);
+
 	// Run while SFML window is open
 	while (window.isOpen())
 	{
