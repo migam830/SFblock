@@ -2,23 +2,31 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+	// Create SFML window
+	sf::RenderWindow window(sf::VideoMode(800, 600), "SFblock");
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+	// Run while SFML window is open
+	while (window.isOpen())
+	{
+		// Check all the window's events since last loop iteration
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				window.close();
+			}
+		}
 
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
+		// Clear window
+		window.clear(sf::Color::White);
 
-    return 0;
+		// Draw everything here
+
+		// End current frame
+		window.display();
+	}
+
+	// Return 0 if successful
+	return 0;
 }
