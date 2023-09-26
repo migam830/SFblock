@@ -4,7 +4,7 @@
 int main()
 {
 	// Create SFML window
-	sf::RenderWindow window(sf::VideoMode(800, 600), "SFblock");
+	sf::RenderWindow window(sf::VideoMode(800, 800), "SFblock");
 	PlayField p1;
 
 	// Enable vertical sync to reduce CPU usage

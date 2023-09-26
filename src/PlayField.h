@@ -8,7 +8,7 @@ public:
 
 private:
 	// Constant controlling size of all blocks making up PlayField
-	const int SCALE = 50;
-	char state[10][20];
+	const int SCALE = 40;
+	char state[20][10];
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
