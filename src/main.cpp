@@ -1,9 +1,11 @@
 #include <SFML/Graphics.hpp>
+#include "PlayField.h"
 
 int main()
 {
 	// Create SFML window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFblock");
+	PlayField p1;
 
 	// Enable vertical sync to reduce CPU usage
 	window.setVerticalSyncEnabled(true);
@@ -25,6 +27,7 @@ int main()
 		window.clear(sf::Color::White);
 
 		// Draw everything here
+		window.draw(p1);
 
 		// End current frame
 		window.display();
