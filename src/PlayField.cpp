@@ -37,8 +37,10 @@ void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			default:
 				square.setFillColor(sf::Color::Black);
 			}
+
 			// Draw onto target window
 			target.draw(square, states);
+
 			column++;
 		}
 		row++;

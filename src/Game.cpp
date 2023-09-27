@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(): window(sf::VideoMode(800, 800), "SFblock")
+Game::Game(): window(sf::VideoMode(800, 850), "SFblock")
 {
 	window.setVerticalSyncEnabled(true);
 }
