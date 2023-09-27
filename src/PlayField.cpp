@@ -26,7 +26,7 @@ void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			square.setOutlineColor(sf::Color::Black);
 			square.setOutlineThickness(-2);
 
-			switch (state[row][column])
+			switch (columnValue)
 			{
 			case 'r':
 				square.setFillColor(sf::Color::Red);
