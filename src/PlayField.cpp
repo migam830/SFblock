@@ -14,9 +14,11 @@ PlayField::PlayField()
 
 void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (int row = 0; row < HEIGHT; row++)
+	int row = 0;
+	for (auto& rowValue : state)
 	{
-		for (int column = 0; column < WIDTH; column++)
+		int column = 0;
+		for (auto& columnValue : rowValue)
 		{
 			sf::RectangleShape square(sf::Vector2f(50, 50));
 			square.setPosition((SCALE * column), (SCALE * row));
@@ -37,6 +39,8 @@ void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			}
 			// Draw onto target window
 			target.draw(square, states);
+			column++;
 		}
+		row++;
 	}
 }
