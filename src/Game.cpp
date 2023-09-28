@@ -3,11 +3,13 @@
 
 Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0)
 {
+	// Load font from font file
 	window.setVerticalSyncEnabled(true);
 	if (!font.loadFromFile("res/SourceSans3-Regular.ttf"))
 	{
 		throw "Font not found";
 	}
+	// Set properties of score counter text
 	scoreDisplay.setPosition(500, 0);
 	scoreDisplay.setFont(font);
 	scoreDisplay.setCharacterSize(50);
@@ -28,6 +30,15 @@ void Game::run()
 			{
 				window.close();
 			}
+
+			if (event.type == sf::Event::KeyPressed)
+			{
+				// Increment score when spacebar is pressed (will be removed later)
+				if (event.key.code == sf::Keyboard::Space)
+				{
+					score += 1;
+				}
+			}
 		}
 
 		// Clear window
@@ -40,4 +51,14 @@ void Game::run()
 		// End current frame
 		window.display();
 	}
+}
+
+int Game::getScore()
+{
+	return score;
+}
+
+void Game::addScore(int amount)
+{
+	score += amount;
 }
