@@ -9,6 +9,9 @@ public:
 	void run();
 
 private:
+	int score;
+	sf::Text scoreDisplay;
+	sf::Font font;
 	PlayField p1;
 	sf::RenderWindow window;
 };
