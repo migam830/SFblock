@@ -3,9 +3,9 @@
 PlayField::PlayField()
 {
 	// Set every block in the PlayField to a certain value
-	for (auto& row : state)
+	for (auto& column : state)
 	{
-		for (auto& value : row)
+		for (auto& value : column)
 		{
 			value = 'b';
 		}
@@ -14,11 +14,11 @@ PlayField::PlayField()
 
 void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	int row = 0;
-	for (auto& rowValue : state)
+	int column = 0;
+	for (auto& columnValue : state)
 	{
-		int column = 0;
-		for (auto& columnValue : rowValue)
+		int row = 0;
+		for (auto& rowValue : columnValue)
 		{
 			sf::RectangleShape square(sf::Vector2f(50, 50));
 			square.setPosition((SCALE * column), (SCALE * row));
@@ -26,7 +26,7 @@ void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			square.setOutlineColor(sf::Color::Black);
 			square.setOutlineThickness(-2);
 
-			switch (columnValue)
+			switch (rowValue)
 			{
 			case 'r':
 				square.setFillColor(sf::Color::Red);
@@ -41,8 +41,8 @@ void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			// Draw onto target window
 			target.draw(square, states);
 
-			column++;
+			row++;
 		}
-		row++;
+		column++;
 	}
 }

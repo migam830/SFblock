@@ -9,7 +9,7 @@ public:
 private:
 	// Constant controlling size of all blocks making up PlayField
 	static const int SCALE = 40;
-	// Size of the PlayField (can be modified to get a different size)
-	char state[20][10];
+	// Size of the PlayField (can be modified to get a different size), declared [columns][rows]
+	char state[10][20];
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
