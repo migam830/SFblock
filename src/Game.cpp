@@ -36,7 +36,7 @@ void Game::run()
 				// Increment score when spacebar is pressed (will be removed later)
 				if (event.key.code == sf::Keyboard::Space)
 				{
-					score += 1;
+					addScore(1);
 				}
 			}
 		}
