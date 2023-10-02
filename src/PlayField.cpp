@@ -12,15 +12,10 @@ PlayField::PlayField(): currentBlock(nullptr)
 	}
 }
 
-PlayField::~PlayField()
-{
-	delete currentBlock;
-}
-
 void PlayField::spawn(char type)
 {
-	delete currentBlock;
-	currentBlock = new Block(type);
+	// Re-assign smart pointer to new instance of Block class
+	currentBlock.reset(new Block(type));
 
 	// Loop over columns and rows in spawning area (might add as static variables later)
 	for (int column = 3; column < 7; column++)

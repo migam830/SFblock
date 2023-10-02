@@ -1,13 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <vector>
+#include <memory>
 #include "Block.h"
 
 class PlayField : public sf::Drawable
 {
 public:
 	PlayField();
-	~PlayField();
 	void spawn(char type);
 
 private:
@@ -18,6 +17,6 @@ private:
 	char state[10][20];
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	// A pointer to the current block
-	Block* currentBlock;
+	// A smart pointer to the current block
+	std::unique_ptr<Block> currentBlock;
 };
