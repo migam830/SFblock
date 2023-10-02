@@ -22,9 +22,9 @@ void PlayField::spawn(char type)
 	currentBlock = new Block(type);
 
 	// Loop over columns and rows in spawning area (might add as static variables later)
-	for (int column = 3; column < 6; column++)
+	for (int column = 3; column < 7; column++)
 	{
-		for (int row = 0; row < 3; row++)
+		for (int row = 0; row < 4; row++)
 		{
 			state[column][row] = currentBlock->getBlock((column - 3), row);
 		}
