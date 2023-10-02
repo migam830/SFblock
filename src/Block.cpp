@@ -5,10 +5,7 @@ Block::Block(char type)
 	// Initialise the array containing the position of the blocks
 	for (auto& column : blocks)
 	{
-		for (auto& value : column)
-		{
-			value = ' ';
-		}
+		column.fill(' ');
 	}
 
 	// Initialise block depending on what type it is, array accessed with [column][row]
