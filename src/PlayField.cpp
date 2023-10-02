@@ -1,13 +1,32 @@
 #include "PlayField.h"
 
-PlayField::PlayField()
+PlayField::PlayField(): currentBlock(nullptr)
 {
 	// Set every block in the PlayField to a certain value
 	for (auto& column : state)
 	{
 		for (auto& value : column)
 		{
-			value = 'b';
+			value = ' ';
+		}
+	}
+}
+
+PlayField::~PlayField()
+{
+	delete currentBlock;
+}
+
+void PlayField::spawn(char type)
+{
+	currentBlock = new Block(type);
+
+	// Loop over columns and rows in spawning area (might add as static variables later)
+	for (int column = 3; column < 6; column++)
+	{
+		for (int row = 0; row < 3; row++)
+		{
+			state[column][row] = currentBlock->getBlock((column - 3), row);
 		}
 	}
 }
@@ -26,6 +45,7 @@ void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			square.setOutlineColor(sf::Color::Black);
 			square.setOutlineThickness(-2);
 
+			// Determine colour of square depending on contents of state array
 			switch (rowValue)
 			{
 			case 'r':
@@ -33,6 +53,12 @@ void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 				break;
 			case 'b':
 				square.setFillColor(sf::Color::Blue);
+				break;
+			case 'c':
+				square.setFillColor(sf::Color::Cyan);
+				break;
+			case 'y':
+				square.setFillColor(sf::Color::Yellow);
 				break;
 			default:
 				square.setFillColor(sf::Color::Black);

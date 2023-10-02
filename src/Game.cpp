@@ -38,6 +38,14 @@ void Game::run()
 				{
 					addScore(1);
 				}
+				if (event.key.code == sf::Keyboard::Left)
+				{
+					p1.spawn('i');
+				}
+				if (event.key.code == sf::Keyboard::Right)
+				{
+					p1.spawn('o');
+				}
 			}
 		}
 

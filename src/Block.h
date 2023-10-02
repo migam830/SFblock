@@ -8,5 +8,4 @@ public:
 private:
 	// Like PlayField, declared [columns][rows]
 	char blocks[4][4];
-	bool isActive;
 };

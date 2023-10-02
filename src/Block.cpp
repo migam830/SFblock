@@ -1,6 +1,6 @@
 #include "Block.h"
 
-Block::Block(char type): isActive(true)
+Block::Block(char type)
 {
 	// Initialise the array containing the position of the blocks
 	for (auto& column : blocks)
