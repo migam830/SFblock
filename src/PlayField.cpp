@@ -19,6 +19,7 @@ PlayField::~PlayField()
 
 void PlayField::spawn(char type)
 {
+	delete currentBlock;
 	currentBlock = new Block(type);
 
 	// Loop over columns and rows in spawning area (might add as static variables later)
