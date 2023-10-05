@@ -6,7 +6,13 @@ class Block
 public:
 	Block(char type);
 	char getBlock(int column, int row);
+	void move(int x, int y);
+	int getX();
+	int getY();
 private:
 	// Like PlayField, declared <<char, rows>,columns>
 	std::array<std::array<char, 4>, 4> blocks;
+
+	int xPos;
+	int yPos;
 };

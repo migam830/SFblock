@@ -40,11 +40,11 @@ void Game::run()
 				}
 				if (event.key.code == sf::Keyboard::Left)
 				{
-					p1.spawn('i');
+					p1.spawn('o');
 				}
 				if (event.key.code == sf::Keyboard::Right)
 				{
-					p1.spawn('o');
+					p1.moveRight();
 				}
 			}
 		}

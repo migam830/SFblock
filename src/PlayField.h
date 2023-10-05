@@ -9,6 +9,8 @@ class PlayField : public sf::Drawable
 public:
 	PlayField();
 	void spawn(char type);
+	void moveLeft();
+	void moveRight();
 
 private:
 	// Constant controlling size of all blocks making up PlayField

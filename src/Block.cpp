@@ -1,6 +1,6 @@
 #include "Block.h"
 
-Block::Block(char type)
+Block::Block(char type): xPos(0), yPos(0)
 {
 	// Initialise the array containing the position of the blocks
 	for (auto& column : blocks)
@@ -31,4 +31,20 @@ Block::Block(char type)
 char Block::getBlock(int column, int row)
 {
 	return blocks[column][row];
+}
+
+void Block::move(int x, int y)
+{
+	xPos += x;
+	yPos += y;
+}
+
+int Block::getX()
+{
+	return xPos;
+}
+
+int Block::getY()
+{
+	return yPos;
 }
