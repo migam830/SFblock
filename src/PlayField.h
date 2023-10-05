@@ -19,8 +19,9 @@ private:
 	// Array containing state of the PlayField (can be modified to get a different size), declared <<char, rows>,columns>
 	std::array<std::array<char, 20>, 10> state;
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
 	// A smart pointer to the current block
 	std::unique_ptr<Block> currentBlock;
+
+	void updateState(bool clear = false);
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

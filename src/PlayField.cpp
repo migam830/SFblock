@@ -17,17 +17,7 @@ void PlayField::spawn(char type)
 	// Set x and y positions of current block to spawn area
 	currentBlock->shiftPosition(3, 0);
 
-	// Loop over columns and rows in spawning area (might add as static variables later)
-	for (int column = currentBlock->getX(); column < currentBlock->getX() + 4; column++)
-	{
-		for (int row = currentBlock->getY(); row < currentBlock->getY() + 4; row++)
-		{
-			if (currentBlock->getBlock((column - currentBlock->getX()), row) != ' ')
-			{
-				state[column][row] = currentBlock->getBlock((column - 3), row);
-			}
-		}
-	}
+	updateState();
 }
 
 void PlayField::moveLeft()
@@ -43,27 +33,30 @@ void PlayField::moveRight()
 		return;
 	}
 
-	// Delete initial position
-	for (int column = currentBlock->getX(); column < currentBlock->getX() + 4; column++)
-	{
-		for (int row = currentBlock->getY(); row < currentBlock->getY() + 4; row++)
-		{
-			if (currentBlock->getBlock((column - currentBlock->getX()), row) != ' ')
-			{
-				state[column][row] = ' ';
-			}
-		}
-	}
+	updateState(true);
+
 	currentBlock->shiftPosition(1, 0);
 
-	// Draw in new position
+	updateState();
+}
+
+void PlayField::updateState(bool clear)
+{
+	// Loop over columns and rows in current block and apply them to the PlayField
 	for (int column = currentBlock->getX(); column < currentBlock->getX() + 4; column++)
 	{
 		for (int row = currentBlock->getY(); row < currentBlock->getY() + 4; row++)
 		{
 			if (currentBlock->getBlock((column - currentBlock->getX()), row) != ' ')
 			{
-				state[column][row] = currentBlock->getBlock((column - currentBlock->getX()), row);
+				if (clear)
+				{
+					state[column][row] = ' ';
+				}
+				else
+				{
+					state[column][row] = currentBlock->getBlock((column - currentBlock->getX()), row - currentBlock->getY());
+				}
 			}
 		}
 	}
