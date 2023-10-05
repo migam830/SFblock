@@ -22,7 +22,10 @@ void PlayField::spawn(char type)
 	{
 		for (int row = currentBlock->getY(); row < currentBlock->getY() + 4; row++)
 		{
-			state[column][row] = currentBlock->getBlock((column - 3), row);
+			if (currentBlock->getBlock((column - currentBlock->getX()), row) != ' ')
+			{
+				state[column][row] = currentBlock->getBlock((column - 3), row);
+			}
 		}
 	}
 }
