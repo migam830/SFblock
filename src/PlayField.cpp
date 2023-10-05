@@ -45,7 +45,10 @@ void PlayField::moveRight()
 	{
 		for (int row = currentBlock->getY(); row < currentBlock->getY() + 4; row++)
 		{
-			state[column][row] = ' ';
+			if (currentBlock->getBlock((column - currentBlock->getX()), row) != ' ')
+			{
+				state[column][row] = ' ';
+			}
 		}
 	}
 	currentBlock->shiftPosition(1, 0);
@@ -55,7 +58,10 @@ void PlayField::moveRight()
 	{
 		for (int row = currentBlock->getY(); row < currentBlock->getY() + 4; row++)
 		{
-			state[column][row] = currentBlock->getBlock((column - currentBlock->getX()), row);
+			if (currentBlock->getBlock((column - currentBlock->getX()), row) != ' ')
+			{
+				state[column][row] = currentBlock->getBlock((column - currentBlock->getX()), row);
+			}
 		}
 	}
 }
