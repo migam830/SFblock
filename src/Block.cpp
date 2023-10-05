@@ -33,7 +33,7 @@ char Block::getBlock(int column, int row)
 	return blocks[column][row];
 }
 
-void Block::move(int x, int y)
+void Block::shiftPosition(int x, int y)
 {
 	xPos += x;
 	yPos += y;

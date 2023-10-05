@@ -15,7 +15,7 @@ void PlayField::spawn(char type)
 	currentBlock.reset(new Block(type));
 
 	// Set x and y positions of current block to spawn area
-	currentBlock->move(3, 0);
+	currentBlock->shiftPosition(3, 0);
 
 	// Loop over columns and rows in spawning area (might add as static variables later)
 	for (int column = currentBlock->getX(); column < currentBlock->getX() + 4; column++)
@@ -42,7 +42,7 @@ void PlayField::moveRight()
 			state[column][row] = ' ';
 		}
 	}
-	currentBlock->move(1, 0);
+	currentBlock->shiftPosition(1, 0);
 
 	// Draw in new position
 	for (int column = currentBlock->getX(); column < currentBlock->getX() + 4; column++)

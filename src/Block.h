@@ -6,7 +6,7 @@ class Block
 public:
 	Block(char type);
 	char getBlock(int column, int row);
-	void move(int x, int y);
+	void shiftPosition(int x, int y);
 	int getX();
 	int getY();
 private:
