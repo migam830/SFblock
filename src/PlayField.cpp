@@ -22,7 +22,16 @@ void PlayField::spawn(char type)
 
 void PlayField::moveLeft()
 {
+	if (currentBlock == nullptr)
+	{
+		return;
+	}
 
+	updateState(true);
+
+	currentBlock->shiftPosition(-1, 0);
+
+	updateState();
 }
 
 void PlayField::moveRight()
