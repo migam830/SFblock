@@ -34,6 +34,12 @@ void PlayField::moveLeft()
 
 void PlayField::moveRight()
 {
+	// Prevent anything from happening if current block doesn't exist
+	if (currentBlock == nullptr)
+	{
+		return;
+	}
+
 	// Delete initial position
 	for (int column = currentBlock->getX(); column < currentBlock->getX() + 4; column++)
 	{
