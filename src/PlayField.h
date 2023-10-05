@@ -11,6 +11,7 @@ public:
 	void spawn(char type);
 	void moveLeft();
 	void moveRight();
+	void moveDown();
 
 private:
 	// Constant controlling size of all blocks making up PlayField

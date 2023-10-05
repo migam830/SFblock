@@ -22,6 +22,7 @@ void PlayField::spawn(char type)
 
 void PlayField::moveLeft()
 {
+	// Prevent anything from happening if current block doesn't exist
 	if (currentBlock == nullptr)
 	{
 		return;
@@ -36,16 +37,25 @@ void PlayField::moveLeft()
 
 void PlayField::moveRight()
 {
-	// Prevent anything from happening if current block doesn't exist
 	if (currentBlock == nullptr)
 	{
 		return;
 	}
 
 	updateState(true);
-
 	currentBlock->shiftPosition(1, 0);
+	updateState();
+}
 
+void PlayField::moveDown()
+{
+	if (currentBlock == nullptr)
+	{
+		return;
+	}
+
+	updateState(true);
+	currentBlock->shiftPosition(0, 1);
 	updateState();
 }
 
@@ -56,7 +66,7 @@ void PlayField::updateState(bool clear)
 	{
 		for (int row = currentBlock->getY(); row < currentBlock->getY() + 4; row++)
 		{
-			if (currentBlock->getBlock((column - currentBlock->getX()), row) != ' ')
+			if (currentBlock->getBlock((column - currentBlock->getX()), row - currentBlock->getY()) != ' ')
 			{
 				if (clear)
 				{

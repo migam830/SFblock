@@ -38,9 +38,13 @@ void Game::run()
 				{
 					addScore(1);
 				}
-				if (event.key.code == sf::Keyboard::Up)
+				if (event.key.code == sf::Keyboard::O)
 				{
 					p1.spawn('o');
+				}
+				if (event.key.code == sf::Keyboard::I)
+				{
+					p1.spawn('i');
 				}
 				if (event.key.code == sf::Keyboard::Left)
 				{
@@ -49,6 +53,10 @@ void Game::run()
 				if (event.key.code == sf::Keyboard::Right)
 				{
 					p1.moveRight();
+				}
+				if (event.key.code == sf::Keyboard::Down)
+				{
+					p1.moveDown();
 				}
 			}
 		}
