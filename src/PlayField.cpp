@@ -42,6 +42,10 @@ void PlayField::moveRight()
 		return;
 	}
 
+	if (!currentBlock->getMove())
+	{
+		return;
+	}
 	updateState(true);
 	currentBlock->shiftPosition(1, 0);
 	updateState();
@@ -50,6 +54,11 @@ void PlayField::moveRight()
 void PlayField::moveDown()
 {
 	if (currentBlock == nullptr)
+	{
+		return;
+	}
+
+	if (!currentBlock->getMove())
 	{
 		return;
 	}
@@ -68,6 +77,15 @@ void PlayField::updateState(bool clear)
 		{
 			if (currentBlock->getBlock((column - currentBlock->getX()), row - currentBlock->getY()) != ' ')
 			{
+				// Check if the block is about to leave the screen
+				if ((column + 1) < state.size() && (row + 1 < state[0].size()))
+				{
+					currentBlock->setMove(true);
+				}
+				else
+				{
+					currentBlock->setMove(false);
+				}
 				if (clear)
 				{
 					state[column][row] = ' ';

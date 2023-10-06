@@ -1,6 +1,6 @@
 #include "Block.h"
 
-Block::Block(char type): xPos(0), yPos(0)
+Block::Block(char type): xPos(0), yPos(0), canMove(true)
 {
 	// Initialise the array containing the position of the blocks
 	for (auto& column : blocks)
@@ -47,4 +47,14 @@ int Block::getX()
 int Block::getY()
 {
 	return yPos;
+}
+
+bool Block::getMove()
+{
+	return canMove;
+}
+
+void Block::setMove(bool state)
+{
+	canMove = state;
 }
