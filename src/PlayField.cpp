@@ -87,22 +87,22 @@ void PlayField::updateState(bool clear)
 		{
 			if (currentBlock->getBlock((column - currentBlock->getX()), row - currentBlock->getY()) != ' ')
 			{
-				// Check if the block is about to leave the screen
+				// Check if the block is about to leave the screen or collide with another block
 
 				// Right movement
-				if ((column + 1) >= state.size())
+				if ((column + 1) >= state.size() || state[column + 1][row] != ' ')
 				{
 					currentBlock->setMove('r', false);
 				}
 
 				// Left movement
-				if (column <= 0)
+				if (column <= 0 /*|| state[column - 1][row] != ' '*/)
 				{
 					currentBlock->setMove('l', false);
 				}
 
 				// Down movement
-				if ((row + 1) >= state[0].size())
+				if ((row + 1) >= state[0].size() || state[column][row + 1] != ' ')
 				{
 					currentBlock->setMove('d', false);
 				}
