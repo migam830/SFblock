@@ -28,6 +28,11 @@ void PlayField::moveLeft()
 		return;
 	}
 
+	if (!currentBlock->getMove('l'))
+	{
+		return;
+	}
+
 	updateState(true);
 
 	currentBlock->shiftPosition(-1, 0);
@@ -42,7 +47,7 @@ void PlayField::moveRight()
 		return;
 	}
 
-	if (!currentBlock->getMove())
+	if (!currentBlock->getMove('r'))
 	{
 		return;
 	}
@@ -58,7 +63,7 @@ void PlayField::moveDown()
 		return;
 	}
 
-	if (!currentBlock->getMove())
+	if (!currentBlock->getMove('d'))
 	{
 		return;
 	}
@@ -70,6 +75,7 @@ void PlayField::moveDown()
 
 void PlayField::updateState(bool clear)
 {
+	bool firstRun = true;
 	// Loop over columns and rows in current block and apply them to the PlayField
 	for (int column = currentBlock->getX(); column < currentBlock->getX() + 4; column++)
 	{
@@ -78,14 +84,41 @@ void PlayField::updateState(bool clear)
 			if (currentBlock->getBlock((column - currentBlock->getX()), row - currentBlock->getY()) != ' ')
 			{
 				// Check if the block is about to leave the screen
-				if ((column + 1) < state.size() && (row + 1 < state[0].size()))
+
+				// Right movement
+				if ((column + 1) < state.size())
 				{
-					currentBlock->setMove(true);
+					currentBlock->setMove('r', true);
 				}
 				else
 				{
-					currentBlock->setMove(false);
+					currentBlock->setMove('r', false);
 				}
+
+				// Left movement
+				if (firstRun)
+				{
+					if (column > 0)
+					{
+						currentBlock->setMove('l', true);
+					}
+					else
+					{
+						currentBlock->setMove('l', false);
+					}
+					firstRun = false;
+				}
+
+				// Down movement
+				if ((row + 1) < state[0].size())
+				{
+					currentBlock->setMove('d', true);
+				}
+				else
+				{
+					currentBlock->setMove('d', false);
+				}
+
 				if (clear)
 				{
 					state[column][row] = ' ';
