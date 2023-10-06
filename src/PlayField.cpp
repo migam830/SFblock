@@ -75,7 +75,11 @@ void PlayField::moveDown()
 
 void PlayField::updateState(bool clear)
 {
-	bool firstRun = true;
+	// Allow block to move in all directions unless made false later
+	currentBlock->setMove('l', true);
+	currentBlock->setMove('r', true);
+	currentBlock->setMove('d', true);
+
 	// Loop over columns and rows in current block and apply them to the PlayField
 	for (int column = currentBlock->getX(); column < currentBlock->getX() + 4; column++)
 	{
@@ -86,39 +90,24 @@ void PlayField::updateState(bool clear)
 				// Check if the block is about to leave the screen
 
 				// Right movement
-				if ((column + 1) < state.size())
-				{
-					currentBlock->setMove('r', true);
-				}
-				else
+				if ((column + 1) >= state.size())
 				{
 					currentBlock->setMove('r', false);
 				}
 
 				// Left movement
-				if (firstRun)
+				if (column <= 0)
 				{
-					if (column > 0)
-					{
-						currentBlock->setMove('l', true);
-					}
-					else
-					{
-						currentBlock->setMove('l', false);
-					}
-					firstRun = false;
+					currentBlock->setMove('l', false);
 				}
 
 				// Down movement
-				if ((row + 1) < state[0].size())
-				{
-					currentBlock->setMove('d', true);
-				}
-				else
+				if ((row + 1) >= state[0].size())
 				{
 					currentBlock->setMove('d', false);
 				}
 
+				// Clear or fill square depending on parameter
 				if (clear)
 				{
 					state[column][row] = ' ';
