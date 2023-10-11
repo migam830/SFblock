@@ -74,12 +74,20 @@ bool PlayField::checkState(int x, int y)
 	{
 		for (int row = y; row < y + 4; row++)
 		{
-			// Check that position isn't out of range
-			
-			// Check that the space isn't already occupied
-			if (currentBlock->getBlock((column - x), (row - y)) != ' ' && state[column][row] != ' ')
+			if (currentBlock->getBlock((column - x), (row - y)) != ' ')
 			{
-				return false;
+				if (column >= state.size())
+					return false;
+
+				if (row >= state[0].size())
+					return false;
+
+				if (column < 0)
+					return false;
+
+				// Check that the space isn't already occupied
+				if (state[column][row] != ' ')
+					return false;
 			}
 		}
 	}
