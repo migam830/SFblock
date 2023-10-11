@@ -23,7 +23,7 @@ private:
 	// A smart pointer to the current block
 	std::unique_ptr<Block> currentBlock;
 
-	bool checkState(int x, int y);
+	bool checkState(int x, int y) const;
 	void updateState(bool clear = false);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

@@ -28,6 +28,7 @@ void PlayField::moveLeft()
 		return;
 	}
 
+	// Clear original position and check if block can be drawn in nw position
 	updateState(true);
 	if (checkState(currentBlock->getX() - 1, currentBlock->getY()))
 	{
@@ -67,7 +68,7 @@ void PlayField::moveDown()
 	updateState();
 }
 
-bool PlayField::checkState(int x, int y)
+bool PlayField::checkState(int x, int y) const
 {
 	// Loop over columns and rows
 	for (int column = x; column < x + 4; column++)
