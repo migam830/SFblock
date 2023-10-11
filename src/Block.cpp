@@ -1,6 +1,6 @@
 #include "Block.h"
 
-Block::Block(char type) : xPos(0), yPos(0), canMoveLeft(true), canMoveRight(true), canMoveDown(true)
+Block::Block(char type) : xPos(0), yPos(0)
 {
 	// Initialise the array containing the position of the blocks
 	for (auto& column : blocks)
@@ -47,40 +47,4 @@ int Block::getX()
 int Block::getY()
 {
 	return yPos;
-}
-
-bool Block::getMove(char direction)
-{
-	switch (direction)
-	{
-	case 'l':
-		return canMoveLeft;
-		break;
-	case 'r':
-		return canMoveRight;
-		break;
-	case 'd':
-		return canMoveDown;
-		break;
-	default:
-		throw "Invalid direction specified";
-	}
-}
-
-void Block::setMove(char direction, bool state)
-{
-	switch (direction)
-	{
-	case 'l':
-		canMoveLeft = state;
-		break;
-	case 'r':
-		canMoveRight = state;
-		break;
-	case 'd':
-		canMoveDown = state;
-		break;
-	default:
-		throw "Invalid direction specified";
-	}
 }

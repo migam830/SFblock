@@ -28,16 +28,13 @@ void PlayField::moveLeft()
 		return;
 	}
 
-	if (!currentBlock->getMove('l'))
-	{
-		return;
-	}
-
 	updateState(true);
-
-	currentBlock->shiftPosition(-1, 0);
-
+	if (checkState(currentBlock->getX() - 1, currentBlock->getY()))
+	{
+		currentBlock->shiftPosition(-1, 0);
+	}
 	updateState();
+
 }
 
 void PlayField::moveRight()
@@ -47,12 +44,11 @@ void PlayField::moveRight()
 		return;
 	}
 
-	if (!currentBlock->getMove('r'))
-	{
-		return;
-	}
 	updateState(true);
-	currentBlock->shiftPosition(1, 0);
+	if (checkState(currentBlock->getX() + 1, currentBlock->getY()))
+	{
+		currentBlock->shiftPosition(1, 0);
+	}
 	updateState();
 }
 
@@ -63,23 +59,35 @@ void PlayField::moveDown()
 		return;
 	}
 
-	if (!currentBlock->getMove('d'))
-	{
-		return;
-	}
-
 	updateState(true);
-	currentBlock->shiftPosition(0, 1);
+	if (checkState(currentBlock->getX(), currentBlock->getY() + 1))
+	{
+		currentBlock->shiftPosition(0, 1);
+	}
 	updateState();
+}
+
+bool PlayField::checkState(int x, int y)
+{
+	// Loop over columns and rows
+	for (int column = x; column < x + 4; column++)
+	{
+		for (int row = y; row < y + 4; row++)
+		{
+			// Check that position isn't out of range
+			
+			// Check that the space isn't already occupied
+			if (currentBlock->getBlock((column - x), (row - y)) != ' ' && state[column][row] != ' ')
+			{
+				return false;
+			}
+		}
+	}
+	return true;
 }
 
 void PlayField::updateState(bool clear)
 {
-	// Allow block to move in all directions unless made false later
-	currentBlock->setMove('l', true);
-	currentBlock->setMove('r', true);
-	currentBlock->setMove('d', true);
-
 	// Loop over columns and rows in current block and apply them to the PlayField
 	for (int column = currentBlock->getX(); column < currentBlock->getX() + 4; column++)
 	{
@@ -87,26 +95,6 @@ void PlayField::updateState(bool clear)
 		{
 			if (currentBlock->getBlock((column - currentBlock->getX()), row - currentBlock->getY()) != ' ')
 			{
-				// Check if the block is about to leave the screen or collide with another block
-
-				// Right movement
-				if ((column + 1) >= state.size() || state[column + 1][row] != ' ')
-				{
-					currentBlock->setMove('r', false);
-				}
-
-				// Left movement
-				if (column <= 0 /*|| state[column - 1][row] != ' '*/)
-				{
-					currentBlock->setMove('l', false);
-				}
-
-				// Down movement
-				if ((row + 1) >= state[0].size() || state[column][row + 1] != ' ')
-				{
-					currentBlock->setMove('d', false);
-				}
-
 				// Clear or fill square depending on parameter
 				if (clear)
 				{
