@@ -28,7 +28,7 @@ void PlayField::moveLeft()
 		return;
 	}
 
-	// Clear original position and check if block can be drawn in nw position
+	// Clear original position and check if block can be drawn in new position
 	updateState(true);
 	if (checkState(currentBlock->getX() - 1, currentBlock->getY()))
 	{
