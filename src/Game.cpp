@@ -38,6 +38,8 @@ void Game::run()
 				{
 					addScore(1);
 				}
+
+				// Block spawning (temporary)
 				if (event.key.code == sf::Keyboard::O)
 				{
 					p1.spawn('o');
@@ -46,6 +48,28 @@ void Game::run()
 				{
 					p1.spawn('i');
 				}
+				if (event.key.code == sf::Keyboard::J)
+				{
+					p1.spawn('j');
+				}
+				if (event.key.code == sf::Keyboard::L)
+				{
+					p1.spawn('l');
+				}
+				if (event.key.code == sf::Keyboard::S)
+				{
+					p1.spawn('s');
+				}
+				if (event.key.code == sf::Keyboard::T)
+				{
+					p1.spawn('t');
+				}
+				if (event.key.code == sf::Keyboard::Z)
+				{
+					p1.spawn('z');
+				}
+
+				// Block movement
 				if (event.key.code == sf::Keyboard::Left)
 				{
 					p1.moveLeft();
