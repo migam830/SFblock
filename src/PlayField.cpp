@@ -68,6 +68,17 @@ void PlayField::moveDown()
 	updateState();
 }
 
+void PlayField::rotateClockwise()
+{
+	if (currentBlock == nullptr)
+	{
+		return;
+	}
+	updateState(true);
+	currentBlock->rotateClockwise();
+	updateState();
+}
+
 bool PlayField::checkState(int x, int y) const
 {
 	// Loop over columns and rows

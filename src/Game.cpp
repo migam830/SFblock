@@ -82,6 +82,12 @@ void Game::run()
 				{
 					p1.moveDown();
 				}
+
+				// Block rotation
+				if (event.key.code == sf::Keyboard::Up)
+				{
+					p1.rotateClockwise();
+				}
 			}
 		}
 

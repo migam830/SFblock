@@ -12,6 +12,7 @@ public:
 	void moveLeft();
 	void moveRight();
 	void moveDown();
+	void rotateClockwise();
 
 private:
 	// Constant controlling size of all blocks making up PlayField
