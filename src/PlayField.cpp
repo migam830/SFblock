@@ -145,6 +145,16 @@ void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			case 'y':
 				square.setFillColor(sf::Color::Yellow);
 				break;
+			case 'o':
+			// RGB code for orange since SFML doesn't have orange
+				square.setFillColor(sf::Color(255, 165, 0));
+				break;
+			case 'g':
+				square.setFillColor(sf::Color::Green);
+				break;
+			case 'm':
+				square.setFillColor(sf::Color::Magenta);
+				break;
 			default:
 				square.setFillColor(sf::Color::Black);
 			}
