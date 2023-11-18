@@ -18,40 +18,40 @@ Block::Block(char type) : xPos(0), yPos(0)
 		blocks[3][1] = 'c';
 		break;
 	case 'j':
-		blocks[0][0] = 'b';
 		blocks[0][1] = 'b';
-		blocks[1][1] = 'b';
-		blocks[2][1] = 'b';
+		blocks[0][2] = 'b';
+		blocks[1][2] = 'b';
+		blocks[2][2] = 'b';
 		break;
 	case 'l':
-		blocks[2][0] = 'o';
-		blocks[0][1] = 'o';
-		blocks[1][1] = 'o';
 		blocks[2][1] = 'o';
+		blocks[0][2] = 'o';
+		blocks[1][2] = 'o';
+		blocks[2][2] = 'o';
 		break;
 	case 'o':
-		blocks[1][0] = 'y';
-		blocks[2][0] = 'y';
 		blocks[1][1] = 'y';
 		blocks[2][1] = 'y';
+		blocks[1][2] = 'y';
+		blocks[2][2] = 'y';
 		break;
 	case 's':
-		blocks[1][0] = 'g';
-		blocks[2][0] = 'g';
-		blocks[0][1] = 'g';
 		blocks[1][1] = 'g';
+		blocks[2][1] = 'g';
+		blocks[0][2] = 'g';
+		blocks[1][2] = 'g';
 		break;
 	case 't':
-		blocks[0][1] = 'm';
-		blocks[1][0] = 'm';
+		blocks[0][2] = 'm';
 		blocks[1][1] = 'm';
-		blocks[2][1] = 'm';
+		blocks[1][2] = 'm';
+		blocks[2][2] = 'm';
 		break;
 	case 'z':
-		blocks[0][0] = 'r';
-		blocks[1][0] = 'r';
+		blocks[0][1] = 'r';
 		blocks[1][1] = 'r';
-		blocks[2][1] = 'r';
+		blocks[1][2] = 'r';
+		blocks[2][2] = 'r';
 		break;
 	default:
 		throw "Invalid block type";
