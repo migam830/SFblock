@@ -76,6 +76,10 @@ void PlayField::rotateClockwise()
 	}
 	updateState(true);
 	currentBlock->rotate(true);
+	if (!checkState(currentBlock->getX(), currentBlock->getY()))
+	{
+		currentBlock->rotate();
+	}
 	updateState();
 }
 
@@ -87,6 +91,10 @@ void PlayField::rotateAntiClockwise()
 	}
 	updateState(true);
 	currentBlock->rotate();
+	if (!checkState(currentBlock->getX(), currentBlock->getY()))
+	{
+		currentBlock->rotate(true);
+	}
 	updateState();
 }
 
