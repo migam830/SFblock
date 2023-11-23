@@ -108,23 +108,24 @@ void Block::rotate(bool clockwise)
 				}
 			}
 		}
-		return;
 	}
 
-	// Clear blocks array
-	for (auto& column : blocks)
+	else
 	{
-		column.fill(' ');
+		// Put each square of the block in its new position
+		for (int column = 0; column < blocks.size() - 1; column++)
+		{
+			for (int row = 1; row < blocks[0].size(); row++)
+			{
+				if (clockwise)
+				{
+					blocks[column][row] = tempBlocks[row - 1][tempBlocks.size() - column - 1];
+				}
+				else
+				{
+					blocks[column][row] = tempBlocks[tempBlocks[0].size() - row - 1][column + 1];
+				}
+			}
+		}
 	}
-
-	// Put each square of the block in its new position
-	blocks[1][2] = tempBlocks[1][2];
-	blocks[0][1] = tempBlocks[0][3];
-	blocks[1][1] = tempBlocks[0][2];
-	blocks[2][1] = tempBlocks[0][1];
-	blocks[2][2] = tempBlocks[1][1];
-	blocks[2][3] = tempBlocks[2][1];
-	blocks[1][3] = tempBlocks[2][2];
-	blocks[0][3] = tempBlocks[2][3];
-	blocks[0][2] = tempBlocks[1][3];
 }
