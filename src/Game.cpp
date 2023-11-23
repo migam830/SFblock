@@ -88,6 +88,10 @@ void Game::run()
 				{
 					p1.rotateClockwise();
 				}
+				if (event.key.code == sf::Keyboard::Enter)
+				{
+					p1.rotateAntiClockwise();
+				}
 			}
 		}
 

@@ -75,7 +75,18 @@ void PlayField::rotateClockwise()
 		return;
 	}
 	updateState(true);
-	currentBlock->rotateClockwise();
+	currentBlock->rotate(true);
+	updateState();
+}
+
+void PlayField::rotateAntiClockwise()
+{
+	if (currentBlock == nullptr)
+	{
+		return;
+	}
+	updateState(true);
+	currentBlock->rotate();
 	updateState();
 }
 

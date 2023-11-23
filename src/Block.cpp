@@ -80,7 +80,7 @@ int Block::getY()
 	return yPos;
 }
 
-void Block::rotateClockwise()
+void Block::rotate(bool clockwise)
 {
 	// 'o' block doesn't rotate
 	if (type == 'o')
@@ -98,7 +98,14 @@ void Block::rotateClockwise()
 		{
 			for (int row = 0; row < tempBlocks[0].size(); row++)
 			{
-				blocks[column][row] = tempBlocks[row][tempBlocks.size() - column - 1];
+				if (clockwise)
+				{
+					blocks[column][row] = tempBlocks[row][tempBlocks.size() - column - 1];
+				}
+				else
+				{
+					blocks[column][row] = tempBlocks[tempBlocks[0].size() - row - 1][column];
+				}
 			}
 		}
 		return;

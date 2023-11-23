@@ -9,7 +9,7 @@ public:
 	void shiftPosition(int x, int y);
 	int getX();
 	int getY();
-	void rotateClockwise();
+	void rotate(bool clockwise = false);
 private:
 	// Like PlayField, declared <<char, rows>,columns>
 	std::array<std::array<char, 4>, 4> blocks;
