@@ -88,15 +88,21 @@ void Block::rotateClockwise()
 		return;
 	}
 
+	// Copy contents of blocks array
+	auto tempBlocks = blocks;
+
 	// 'i' block needs to be handled differently due to horizontal length
 	if (type == 'i')
 	{
-		// Replace 'return' with something useful
+		for (int column = 0; column < tempBlocks.size(); column++)
+		{
+			for (int row = 0; row < tempBlocks[0].size(); row++)
+			{
+				blocks[column][row] = tempBlocks[row][tempBlocks.size() - column - 1];
+			}
+		}
 		return;
 	}
-
-	// Backup contents of blocks array
-	std::array<std::array<char, 4>, 4> tempBlocks = blocks;
 
 	// Clear blocks array
 	for (auto& column : blocks)
