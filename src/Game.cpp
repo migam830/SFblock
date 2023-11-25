@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <string>
 
-Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0)
+Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false)
 {
 	// Load font from font file
 	window.setVerticalSyncEnabled(true);
@@ -20,7 +20,26 @@ void Game::run()
 {
 	while (window.isOpen())
 	{
+		// Any actions not based on events here
 		scoreDisplay.setString("Score: " + std::to_string(score));
+
+		// Doesn't do anything when both left and right are pressed pressed
+		if (leftPressed && !rightPressed && !downPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
+		{
+			ARRclock.restart();
+			p1.moveLeft();
+		}
+		if (rightPressed && !leftPressed && !downPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
+		{
+			ARRclock.restart();
+			p1.moveRight();
+		}
+		// Down takes priority over other directions
+		if (downPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR)
+		{
+			ARRclock.restart();
+			p1.moveDown();
+		}
 
 		// Check all the window's events since last loop iteration
 		sf::Event event;
@@ -70,17 +89,23 @@ void Game::run()
 				}
 
 				// Block movement
-				if (event.key.code == sf::Keyboard::Left)
+				if (event.key.code == sf::Keyboard::Left && !leftPressed)
 				{
-					p1.moveLeft();
+					DASclock.restart();
+					ARRclock.restart();
+					leftPressed = true;
 				}
-				if (event.key.code == sf::Keyboard::Right)
+				if (event.key.code == sf::Keyboard::Right && !rightPressed)
 				{
-					p1.moveRight();
+					DASclock.restart();
+					ARRclock.restart();
+					rightPressed = true;
 				}
-				if (event.key.code == sf::Keyboard::Down)
+				if (event.key.code == sf::Keyboard::Down && !downPressed)
 				{
-					p1.moveDown();
+					// DAS not applicable to downward movement
+					ARRclock.restart();
+					downPressed = true;
 				}
 
 				// Block rotation
@@ -91,6 +116,21 @@ void Game::run()
 				if (event.key.code == sf::Keyboard::Enter)
 				{
 					p1.rotateAntiClockwise();
+				}
+			}
+			if (event.type == sf::Event::KeyReleased)
+			{
+				if (event.key.code == sf::Keyboard::Left)
+				{
+					leftPressed = false;
+				}
+				if (event.key.code == sf::Keyboard::Right)
+				{
+					rightPressed = false;
+				}
+				if (event.key.code == sf::Keyboard::Down)
+				{
+					downPressed = false;
 				}
 			}
 		}

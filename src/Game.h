@@ -12,8 +12,25 @@ public:
 
 private:
 	int score;
+
+	// Value of delayed auto shift (milliseconds)
+	static const int DAS = 50;
+
+	// Value of auto repeat rate (milliseconds)
+	static const int ARR = 20;
+
+	// State of left, right and down arrow keys
+	bool leftPressed;
+	bool rightPressed;
+	bool downPressed;
+
+	// All the main UI components of the game
 	sf::Text scoreDisplay;
 	sf::Font font;
 	PlayField p1;
 	sf::RenderWindow window;
+
+	// Clocks to time block movement and falling
+	sf::Clock DASclock;
+	sf::Clock ARRclock;
 };
