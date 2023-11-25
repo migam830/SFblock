@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <string>
 
-Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false)
+Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false), fallRate(1000)
 {
 	// Load font from font file
 	window.setVerticalSyncEnabled(true);
@@ -21,7 +21,16 @@ void Game::run()
 	while (window.isOpen())
 	{
 		// Any actions not based on events here
+
+		// Update score display with latest score
 		scoreDisplay.setString("Score: " + std::to_string(score));
+
+		// Block falls naturally even if no keys are pressed
+		if (fallClock.getElapsedTime().asMilliseconds() >= fallRate)
+		{
+			fallClock.restart();
+			p1.moveDown();
+		}
 
 		if (leftPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
 		{
@@ -33,7 +42,7 @@ void Game::run()
 			ARRclock.restart();
 			p1.moveRight();
 		}
-		if (downPressed && softDropClock.getElapsedTime().asMilliseconds() >= softDropSpeed)
+		if (downPressed && softDropClock.getElapsedTime().asMilliseconds() >= SOFTDROPSPEED)
 		{
 			softDropClock.restart();
 			p1.moveDown();

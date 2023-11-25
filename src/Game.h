@@ -20,7 +20,10 @@ private:
 	static const int ARR = 20;
 
 	// Value of ARR for downward movement (milliseconds)
-	static const int softDropSpeed = 20;
+	static const int SOFTDROPSPEED = 20;
+
+	// How fast blocks fall naturally (non-constant, milliseconds)
+	int fallRate;
 
 	// State of left, right and down arrow keys
 	bool leftPressed;
@@ -37,4 +40,5 @@ private:
 	sf::Clock DASclock;
 	sf::Clock ARRclock;
 	sf::Clock softDropClock;
+	sf::Clock fallClock;
 };
