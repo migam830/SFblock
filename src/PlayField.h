@@ -11,7 +11,7 @@ public:
 	void spawn(char type);
 	void moveLeft();
 	void moveRight();
-	void moveDown();
+	bool moveDown();
 	void rotateClockwise();
 	void rotateAntiClockwise();
 

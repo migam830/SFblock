@@ -53,19 +53,26 @@ void PlayField::moveRight()
 	updateState();
 }
 
-void PlayField::moveDown()
+bool PlayField::moveDown()
 {
 	if (currentBlock == nullptr)
 	{
-		return;
+		return false;
 	}
+
+	bool isSuccessful = true;
 
 	updateState(true);
 	if (checkState(currentBlock->getX(), currentBlock->getY() + 1))
 	{
 		currentBlock->shiftPosition(0, 1);
 	}
+	else
+	{
+		isSuccessful = false;
+	}
 	updateState();
+	return isSuccessful;
 }
 
 void PlayField::rotateClockwise()

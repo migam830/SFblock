@@ -25,11 +25,17 @@ void Game::run()
 		// Update score display with latest score
 		scoreDisplay.setString("Score: " + std::to_string(score));
 
+
 		// Block falls naturally even if no keys are pressed
 		if (fallClock.getElapsedTime().asMilliseconds() >= fallRate)
 		{
 			fallClock.restart();
-			p1.moveDown();
+			// If block is null pointer or can't move down, spawn a new one
+			if (!p1.moveDown())
+			{
+				// Hardcoded block type will be replaced later
+				p1.spawn('t');
+			}
 		}
 
 		if (leftPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
@@ -65,36 +71,6 @@ void Game::run()
 					addScore(1);
 				}
 
-				// Block spawning (temporary)
-				if (event.key.code == sf::Keyboard::O)
-				{
-					p1.spawn('o');
-				}
-				if (event.key.code == sf::Keyboard::I)
-				{
-					p1.spawn('i');
-				}
-				if (event.key.code == sf::Keyboard::J)
-				{
-					p1.spawn('j');
-				}
-				if (event.key.code == sf::Keyboard::L)
-				{
-					p1.spawn('l');
-				}
-				if (event.key.code == sf::Keyboard::S)
-				{
-					p1.spawn('s');
-				}
-				if (event.key.code == sf::Keyboard::T)
-				{
-					p1.spawn('t');
-				}
-				if (event.key.code == sf::Keyboard::Z)
-				{
-					p1.spawn('z');
-				}
-
 				// Block movement
 				if (event.key.code == sf::Keyboard::Left && !leftPressed)
 				{
@@ -122,7 +98,7 @@ void Game::run()
 				{
 					p1.rotateClockwise();
 				}
-				if (event.key.code == sf::Keyboard::Enter)
+				if (event.key.code == sf::Keyboard::Z)
 				{
 					p1.rotateAntiClockwise();
 				}
