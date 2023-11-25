@@ -19,6 +19,9 @@ private:
 	// Value of auto repeat rate (milliseconds)
 	static const int ARR = 20;
 
+	// Value of ARR for downward movement (milliseconds)
+	static const int softDropSpeed = 20;
+
 	// State of left, right and down arrow keys
 	bool leftPressed;
 	bool rightPressed;
@@ -33,4 +36,5 @@ private:
 	// Clocks to time block movement and falling
 	sf::Clock DASclock;
 	sf::Clock ARRclock;
+	sf::Clock softDropClock;
 };

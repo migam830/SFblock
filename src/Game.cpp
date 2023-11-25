@@ -23,21 +23,19 @@ void Game::run()
 		// Any actions not based on events here
 		scoreDisplay.setString("Score: " + std::to_string(score));
 
-		// Doesn't do anything when both left and right are pressed pressed
-		if (leftPressed && !rightPressed && !downPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
+		if (leftPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
 		{
 			ARRclock.restart();
 			p1.moveLeft();
 		}
-		if (rightPressed && !leftPressed && !downPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
+		if (rightPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
 		{
 			ARRclock.restart();
 			p1.moveRight();
 		}
-		// Down takes priority over other directions
-		if (downPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR)
+		if (downPressed && softDropClock.getElapsedTime().asMilliseconds() >= softDropSpeed)
 		{
-			ARRclock.restart();
+			softDropClock.restart();
 			p1.moveDown();
 		}
 
@@ -94,17 +92,19 @@ void Game::run()
 					DASclock.restart();
 					ARRclock.restart();
 					leftPressed = true;
+					rightPressed = false;
 				}
 				if (event.key.code == sf::Keyboard::Right && !rightPressed)
 				{
 					DASclock.restart();
 					ARRclock.restart();
 					rightPressed = true;
+					leftPressed = false;
 				}
 				if (event.key.code == sf::Keyboard::Down && !downPressed)
 				{
 					// DAS not applicable to downward movement
-					ARRclock.restart();
+					softDropClock.restart();
 					downPressed = true;
 				}
 
