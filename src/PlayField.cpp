@@ -155,6 +155,29 @@ void PlayField::updateState(bool clear)
 	}
 }
 
+void PlayField::clearLines()
+{
+	// Clear any filled lines (loops over rows then columns)
+	for (int row = 0; row < state[0].size(); row++)
+	{
+		bool isFull = true;
+		for (int column = 0; column < state.size(); column++)
+		{
+			if (state[column][row] == ' ')
+			{
+				isFull = false;
+			}
+		}
+		if (isFull)
+		{
+			for (int column = 0; column < state.size(); column++)
+			{
+				state[column][row] = ' ';
+			}
+		}
+	}
+}
+
 void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	for (int column = 0; column < state.size(); column++)

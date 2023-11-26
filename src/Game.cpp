@@ -25,7 +25,6 @@ void Game::run()
 		// Update score display with latest score
 		scoreDisplay.setString("Score: " + std::to_string(score));
 
-
 		// Block falls naturally even if no keys are pressed
 		if (fallClock.getElapsedTime().asMilliseconds() >= fallRate)
 		{
@@ -33,6 +32,7 @@ void Game::run()
 			// If block is null pointer or can't move down, spawn a new one
 			if (!p1.moveDown())
 			{
+				p1.clearLines();
 				// Hardcoded block type will be replaced later
 				p1.spawn('t');
 			}
