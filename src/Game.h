@@ -17,7 +17,7 @@ private:
 	static const int DAS = 50;
 
 	// Value of auto repeat rate (milliseconds)
-	static const int ARR = 20;
+	static const int ARR = 50;
 
 	// Value of ARR for downward movement (milliseconds)
 	static const int SOFTDROPSPEED = 20;
