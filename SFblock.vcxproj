@@ -155,11 +155,13 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PlayField.cpp" />
+    <ClCompile Include="src\RandomShuffler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Block.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\PlayField.h" />
+    <ClInclude Include="src\RandomShuffler.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\SourceSans3-Regular.ttf">

@@ -1,5 +1,6 @@
 #pragma once
 #include "PlayField.h"
+#include "RandomShuffler.h"
 #include <SFML/Graphics.hpp>
 
 class Game
@@ -41,4 +42,7 @@ private:
 	sf::Clock ARRclock;
 	sf::Clock softDropClock;
 	sf::Clock fallClock;
+
+	// Shuffler to return next block to be spawned
+	RandomShuffler shuffler1;
 };

@@ -34,7 +34,7 @@ void Game::run()
 			{
 				p1.clearLines();
 				// Hardcoded block type will be replaced later
-				p1.spawn('i');
+				p1.spawn(shuffler1.getNextPiece());
 			}
 		}
 
