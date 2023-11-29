@@ -176,6 +176,35 @@ void PlayField::clearLines()
 			}
 		}
 	}
+
+	// Make any rows above blank rows fall down
+	for (int row = state[0].size() - 1; row > 1; row--)
+	{
+		bool isBlank = true;
+		int blankRows = 0;
+		while (isBlank && blankRows < state[0].size())
+		{
+			for (int column = 0; column < state.size(); column++)
+			{
+				if (state[column][row] != ' ')
+				{
+					isBlank = false;
+				}
+			}
+			if (isBlank)
+			{
+				blankRows++;
+				// Iterator variables named differently to avoid name collisions
+				for (int newRow = row; newRow > 0; newRow--)
+				{
+					for (int newColumn = 0; newColumn < state.size(); newColumn++)
+					{
+						state[newColumn][newRow] = state[newColumn][newRow - 1];
+					}
+				}
+			}
+		}
+	}
 }
 
 void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
