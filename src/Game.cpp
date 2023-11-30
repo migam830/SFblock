@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <string>
 
-Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false), fallRate(1000)
+Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false), fallRate(1000), gameOver(false)
 {
 	// Load font from font file
 	window.setVerticalSyncEnabled(true);
@@ -22,36 +22,43 @@ void Game::run()
 	{
 		// Any actions not based on events here
 
-		// Update score display with latest score
-		scoreDisplay.setString("Score: " + std::to_string(score));
-
-		// Block falls naturally even if no keys are pressed
-		if (fallClock.getElapsedTime().asMilliseconds() >= fallRate)
+		if (!gameOver)
 		{
-			fallClock.restart();
-			// If block is null pointer or can't move down, spawn a new one
-			if (!p1.moveDown())
+			// Update score display with latest score
+			scoreDisplay.setString("Score: " + std::to_string(score));
+
+			// Block falls naturally even if no keys are pressed
+			if (fallClock.getElapsedTime().asMilliseconds() >= fallRate)
 			{
-				p1.clearLines();
-				// Spawn next piece as determined by shuffler
-				p1.spawn(shuffler1.getNextPiece());
+				fallClock.restart();
+				// If block is null pointer or can't move down, spawn a new one
+				if (!p1.moveDown())
+				{
+					p1.clearLines();
+					// Spawn next piece as determined by shuffler
+					if (!p1.spawn(shuffler1.getNextPiece()))
+					{
+						gameOver = true;
+						scoreDisplay.setString("Score: " + std::to_string(score) + "\nGame over");
+					}
+				}
 			}
-		}
 
-		if (leftPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
-		{
-			ARRclock.restart();
-			p1.moveLeft();
-		}
-		if (rightPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
-		{
-			ARRclock.restart();
-			p1.moveRight();
-		}
-		if (downPressed && softDropClock.getElapsedTime().asMilliseconds() >= SOFTDROPSPEED)
-		{
-			softDropClock.restart();
-			p1.moveDown();
+			if (leftPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
+			{
+				ARRclock.restart();
+				p1.moveLeft();
+			}
+			if (rightPressed && ARRclock.getElapsedTime().asMilliseconds() >= ARR && DASclock.getElapsedTime().asMilliseconds() >= DAS)
+			{
+				ARRclock.restart();
+				p1.moveRight();
+			}
+			if (downPressed && softDropClock.getElapsedTime().asMilliseconds() >= SOFTDROPSPEED)
+			{
+				softDropClock.restart();
+				p1.moveDown();
+			}
 		}
 
 		// Check all the window's events since last loop iteration

@@ -31,6 +31,9 @@ private:
 	bool rightPressed;
 	bool downPressed;
 
+	// Boolean indicating when the game is over
+	bool gameOver;
+
 	// All the main UI components of the game
 	sf::Text scoreDisplay;
 	sf::Font font;
