@@ -8,8 +8,6 @@ class Game
 public:
 	Game();
 	void run();
-	int getScore();
-	void addScore(int amount);
 
 private:
 	int score;

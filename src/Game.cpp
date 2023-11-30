@@ -40,7 +40,7 @@ void Game::run()
 				// If block is null pointer or can't move down, spawn a new one
 				if (!p1.moveDown())
 				{
-					// Increment score by number of lines cleared
+					// Clear lines and increment score by number of lines cleared
 					score += p1.clearLines();
 
 					// Spawn next piece as determined by shuffler
@@ -81,12 +81,6 @@ void Game::run()
 
 			if (event.type == sf::Event::KeyPressed)
 			{
-				// Increment score when spacebar is pressed (will be removed later)
-				if (event.key.code == sf::Keyboard::Space)
-				{
-					addScore(1);
-				}
-
 				// Block movement
 				if (event.key.code == sf::Keyboard::Left && !leftPressed)
 				{
@@ -157,14 +151,4 @@ void Game::run()
 		// End current frame
 		window.display();
 	}
-}
-
-int Game::getScore()
-{
-	return score;
-}
-
-void Game::addScore(int amount)
-{
-	score += amount;
 }
