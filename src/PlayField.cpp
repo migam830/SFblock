@@ -9,15 +9,22 @@ PlayField::PlayField()
 	}
 }
 
-void PlayField::spawn(char type)
+bool PlayField::spawn(char type)
 {
 	// Re-assign smart pointer to new instance of Block class
 	currentBlock.reset(new Block(type));
+
+	// Game over if block can't be spawned
+	if (!checkState(3, 0))
+	{
+		return false;
+	}
 
 	// Set x and y positions of current block to spawn area
 	currentBlock->shiftPosition(3, 0);
 
 	updateState();
+	return true;
 }
 
 void PlayField::moveLeft()
