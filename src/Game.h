@@ -15,13 +15,13 @@ private:
 	int score;
 
 	// Value of delayed auto shift (milliseconds)
-	static const int DAS = 50;
+	const int DAS = 50;
 
 	// Value of auto repeat rate (milliseconds)
-	static const int ARR = 50;
+	const int ARR = 50;
 
 	// Value of ARR for downward movement (milliseconds)
-	static const int SOFTDROPSPEED = 20;
+	const int SOFTDROPSPEED = 20;
 
 	// How fast blocks fall naturally (non-constant, milliseconds)
 	int fallRate;
