@@ -101,13 +101,22 @@ void Game::run()
 				}
 
 				// Block rotation
-				if (event.key.code == sf::Keyboard::Up)
+				if (event.key.code == sf::Keyboard::Up && !gameOver)
 				{
 					p1.rotateClockwise();
 				}
-				if (event.key.code == sf::Keyboard::Z)
+				if (event.key.code == sf::Keyboard::Z && !gameOver)
 				{
 					p1.rotateAntiClockwise();
+				}
+
+				// Starting a new game
+				if (event.key.code == sf::Keyboard::N && gameOver)
+				{
+					gameOver = false;
+					score = 0;
+					p1.init();
+					fallClock.restart();
 				}
 			}
 			if (event.type == sf::Event::KeyReleased)

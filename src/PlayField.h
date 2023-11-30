@@ -8,6 +8,7 @@ class PlayField : public sf::Drawable
 {
 public:
 	PlayField();
+	void init();
 	bool spawn(char type);
 	void moveLeft();
 	void moveRight();

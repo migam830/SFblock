@@ -2,7 +2,16 @@
 
 PlayField::PlayField()
 {
-	// Set every block in the PlayField to a certain value
+	// Clear the contents of the playing field
+	init();
+}
+
+void PlayField::init()
+{
+	// Set currentBlock to null pointer
+	currentBlock.reset();
+
+	// Set every block in the playfield to a space character
 	for (auto& column : state)
 	{
 		column.fill(' ');
