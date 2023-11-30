@@ -40,7 +40,9 @@ void Game::run()
 				// If block is null pointer or can't move down, spawn a new one
 				if (!p1.moveDown())
 				{
-					p1.clearLines();
+					// Increment score by number of lines cleared
+					score += p1.clearLines();
+
 					// Spawn next piece as determined by shuffler
 					if (!p1.spawn(shuffler1.getNextPiece()))
 					{

@@ -171,8 +171,11 @@ void PlayField::updateState(bool clear)
 	}
 }
 
-void PlayField::clearLines()
+int PlayField::clearLines()
 {
+	// Number of full lines
+	int numClearLines = 0;
+
 	// Clear any filled lines (loops over rows then columns)
 	for (int row = 0; row < state[0].size(); row++)
 	{
@@ -186,6 +189,7 @@ void PlayField::clearLines()
 		}
 		if (isFull)
 		{
+			numClearLines += 1;
 			for (int column = 0; column < state.size(); column++)
 			{
 				state[column][row] = ' ';
@@ -221,6 +225,7 @@ void PlayField::clearLines()
 			}
 		}
 	}
+	return numClearLines;
 }
 
 void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const

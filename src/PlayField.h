@@ -15,7 +15,7 @@ public:
 	bool moveDown();
 	void rotateClockwise();
 	void rotateAntiClockwise();
-	void clearLines();
+	int clearLines();
 
 private:
 	// Constant controlling size of all blocks making up PlayField
