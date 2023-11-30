@@ -1,8 +1,11 @@
 #include "Game.h"
 #include <string>
 
-Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false), fallRate(1000), gameOver(false)
+Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false), gameOver(false)
 {
+	// Initialise fall rate
+	fallRate = INITIALFALLRATE;
+
 	// Load font from font file
 	window.setVerticalSyncEnabled(true);
 	if (!font.loadFromFile("res/SourceSans3-Regular.ttf"))
@@ -42,6 +45,22 @@ void Game::run()
 				{
 					// Clear lines and increment score by number of lines cleared
 					score += p1.clearLines();
+
+					// Increase speed of blocks as score increases
+					if (score >= 25)
+						fallRate = 100;
+					
+					else if (score >= 20)
+						fallRate = 200;
+					
+					else if (score >= 15)
+						fallRate = 400;
+
+					else if (score >= 10)
+						fallRate = 600;
+
+					else if (score >= 5)
+						fallRate = 800;
 
 					// Spawn next piece as determined by shuffler
 					if (!p1.spawn(shuffler1.getNextPiece()))
@@ -118,6 +137,7 @@ void Game::run()
 				{
 					gameOver = false;
 					score = 0;
+					fallRate = INITIALFALLRATE;
 					p1.init();
 					newGameMessage.setString("");
 					fallClock.restart();

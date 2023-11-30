@@ -21,8 +21,11 @@ private:
 	// Value of ARR for downward movement (milliseconds)
 	const int SOFTDROPSPEED = 20;
 
-	// How fast blocks fall naturally (non-constant, milliseconds)
+	// How fast blocks fall naturally (non-constant, milliseconds, lower is faster)
 	int fallRate;
+
+	// Fall rate at the start of the game
+	const int INITIALFALLRATE = 1000;
 
 	// State of left, right and down arrow keys
 	bool leftPressed;
