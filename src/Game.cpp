@@ -33,7 +33,7 @@ void Game::run()
 			if (!p1.moveDown())
 			{
 				p1.clearLines();
-				// Hardcoded block type will be replaced later
+				// Spawn next piece as determined by shuffler
 				p1.spawn(shuffler1.getNextPiece());
 			}
 		}
