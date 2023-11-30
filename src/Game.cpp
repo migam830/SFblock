@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <string>
 
-Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false), gameOver(false)
+Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false), gameOver(true)
 {
 	// Initialise fall rate
 	fallRate = INITIALFALLRATE;
@@ -17,12 +17,14 @@ Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed
 	scoreDisplay.setFont(font);
 	scoreDisplay.setCharacterSize(50);
 	scoreDisplay.setFillColor(sf::Color::Black);
+	scoreDisplay.setString("Score: " + std::to_string(score));
 
 	// Properties of new game message
 	newGameMessage.setPosition(425, 150);
 	newGameMessage.setFont(font);
 	newGameMessage.setCharacterSize(30);
 	newGameMessage.setFillColor(sf::Color::Blue);
+	newGameMessage.setString("Press N to start a new game");
 }
 
 void Game::run()
