@@ -36,6 +36,7 @@ private:
 
 	// All the main UI components of the game
 	sf::Text scoreDisplay;
+	sf::Text newGameMessage;
 	sf::Font font;
 	PlayField p1;
 	sf::RenderWindow window;

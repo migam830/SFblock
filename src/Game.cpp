@@ -14,6 +14,12 @@ Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed
 	scoreDisplay.setFont(font);
 	scoreDisplay.setCharacterSize(50);
 	scoreDisplay.setFillColor(sf::Color::Black);
+
+	// Properties of new game message
+	newGameMessage.setPosition(425, 150);
+	newGameMessage.setFont(font);
+	newGameMessage.setCharacterSize(30);
+	newGameMessage.setFillColor(sf::Color::Blue);
 }
 
 void Game::run()
@@ -40,6 +46,7 @@ void Game::run()
 					{
 						gameOver = true;
 						scoreDisplay.setString("Score: " + std::to_string(score) + "\nGame over");
+						newGameMessage.setString("Press N to start a new game");
 					}
 				}
 			}
@@ -116,6 +123,7 @@ void Game::run()
 					gameOver = false;
 					score = 0;
 					p1.init();
+					newGameMessage.setString("");
 					fallClock.restart();
 				}
 			}
@@ -142,6 +150,7 @@ void Game::run()
 		// Draw everything here
 		window.draw(p1);
 		window.draw(scoreDisplay);
+		window.draw(newGameMessage);
 
 		// End current frame
 		window.display();
