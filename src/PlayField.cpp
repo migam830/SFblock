@@ -237,8 +237,8 @@ void PlayField::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			sf::RectangleShape square(sf::Vector2f(50, 50));
 			square.setPosition((SCALE * column), (SCALE * row));
 			square.setSize(sf::Vector2f(SCALE, SCALE));
-			square.setOutlineColor(sf::Color::Black);
-			square.setOutlineThickness(-2);
+			square.setOutlineColor(sf::Color(27, 27, 27));
+			square.setOutlineThickness(-1);
 
 			// Determine colour of square depending on contents of state array
 			switch (state[column][row])
