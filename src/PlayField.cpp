@@ -121,6 +121,20 @@ void PlayField::rotateAntiClockwise()
 	updateState();
 }
 
+void PlayField::hardDrop()
+{
+	if (currentBlock == nullptr)
+	{
+		return;
+	}
+	updateState(true);
+	while (checkState(currentBlock->getX(), currentBlock->getY() + 1))
+	{
+		currentBlock->shiftPosition(0, 1);
+	}
+	updateState();
+}
+
 bool PlayField::checkState(int x, int y) const
 {
 	// Loop over columns and rows

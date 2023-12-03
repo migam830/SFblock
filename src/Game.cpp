@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <string>
 
-Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false), gameOver(true)
+Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false), hardDrop(false), gameOver(true)
 {
 	// Initialise fall rate
 	fallRate = INITIALFALLRATE;
@@ -39,8 +39,9 @@ void Game::run()
 			scoreDisplay.setString("Score: " + std::to_string(score));
 
 			// Block falls naturally even if no keys are pressed
-			if (fallClock.getElapsedTime().asMilliseconds() >= fallRate)
+			if ((fallClock.getElapsedTime().asMilliseconds() >= fallRate) || hardDrop)
 			{
+				hardDrop = false;
 				fallClock.restart();
 				// If block is null pointer or can't move down, spawn a new one
 				if (!p1.moveDown())
@@ -103,25 +104,31 @@ void Game::run()
 			if (event.type == sf::Event::KeyPressed)
 			{
 				// Block movement
-				if (event.key.code == sf::Keyboard::Left && !leftPressed)
+				if (event.key.code == sf::Keyboard::Left && !leftPressed && !gameOver)
 				{
 					DASclock.restart();
 					ARRclock.restart();
 					leftPressed = true;
 					rightPressed = false;
 				}
-				if (event.key.code == sf::Keyboard::Right && !rightPressed)
+				if (event.key.code == sf::Keyboard::Right && !rightPressed && !gameOver)
 				{
 					DASclock.restart();
 					ARRclock.restart();
 					rightPressed = true;
 					leftPressed = false;
 				}
-				if (event.key.code == sf::Keyboard::Down && !downPressed)
+				if (event.key.code == sf::Keyboard::Down && !downPressed && !gameOver)
 				{
 					// DAS not applicable to downward movement
 					softDropClock.restart();
 					downPressed = true;
+				}
+				// Hard drop
+				if (event.key.code == sf::Keyboard::Space && !gameOver)
+				{
+					p1.hardDrop();
+					hardDrop = true;
 				}
 
 				// Block rotation

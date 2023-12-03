@@ -32,6 +32,9 @@ private:
 	bool rightPressed;
 	bool downPressed;
 
+	// Boolean indicating hard drop
+	bool hardDrop;
+
 	// Boolean indicating when the game is over
 	bool gameOver;
 

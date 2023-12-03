@@ -15,6 +15,7 @@ public:
 	bool moveDown();
 	void rotateClockwise();
 	void rotateAntiClockwise();
+	void hardDrop();
 	int clearLines();
 
 private:
