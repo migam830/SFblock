@@ -50,13 +50,13 @@ void Game::run()
 					score += p1.clearLines();
 
 					// Increase speed of blocks as score increases
-					if (score >= 25)
-						fallRate = 100;
+					if (score >= 40)
+						fallRate = 300;
+					
+					else if (score >= 30)
+						fallRate = 350;
 					
 					else if (score >= 20)
-						fallRate = 200;
-					
-					else if (score >= 15)
 						fallRate = 400;
 
 					else if (score >= 10)
