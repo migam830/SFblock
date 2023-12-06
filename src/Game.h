@@ -13,10 +13,10 @@ private:
 	int score;
 
 	// Value of delayed auto shift (milliseconds)
-	const int DAS = 50;
+	const int DAS = 40;
 
 	// Value of auto repeat rate (milliseconds)
-	const int ARR = 50;
+	const int ARR = 45;
 
 	// Value of ARR for downward movement (milliseconds)
 	const int SOFTDROPSPEED = 20;
