@@ -1,13 +1,13 @@
 #pragma once
+#include "Screen.h"
 #include "PlayField.h"
 #include "RandomShuffler.h"
 #include <SFML/Graphics.hpp>
 
-class Game
+class GameScreen : public Screen
 {
 public:
-	Game();
-	void run();
+	GameScreen();
 
 private:
 	int score;
@@ -43,7 +43,6 @@ private:
 	sf::Text newGameMessage;
 	sf::Font font;
 	PlayField p1;
-	sf::RenderWindow window;
 
 	// Clocks to time block movement and falling
 	sf::Clock DASclock;
@@ -53,4 +52,6 @@ private:
 
 	// Shuffler to return next block to be spawned
 	RandomShuffler shuffler1;
+
+	virtual int run(sf::RenderWindow& window);
 };

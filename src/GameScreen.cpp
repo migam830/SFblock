@@ -1,17 +1,17 @@
-#include "Game.h"
-#include <string>
+#pragma once
+#include "GameScreen.h"
 
-Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed(false), rightPressed(false), downPressed(false), hardDrop(false), gameOver(true)
+GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), downPressed(false), hardDrop(false), gameOver(true)
 {
 	// Initialise fall rate
 	fallRate = INITIALFALLRATE;
 
-	// Load font from font file
-	window.setVerticalSyncEnabled(true);
+	// Load font from file
 	if (!font.loadFromFile("res/SourceSans3-Regular.ttf"))
 	{
 		throw "Font not found";
 	}
+
 	// Set properties of score counter text
 	scoreDisplay.setPosition(500, 0);
 	scoreDisplay.setFont(font);
@@ -27,7 +27,7 @@ Game::Game() : window(sf::VideoMode(800, 850), "SFblock"), score(0), leftPressed
 	newGameMessage.setString("Press N to start a new game");
 }
 
-void Game::run()
+int GameScreen::run(sf::RenderWindow& window)
 {
 	while (window.isOpen())
 	{
@@ -52,10 +52,10 @@ void Game::run()
 					// Increase speed of blocks as score increases
 					if (score >= 40)
 						fallRate = 300;
-					
+
 					else if (score >= 30)
 						fallRate = 350;
-					
+
 					else if (score >= 20)
 						fallRate = 400;
 
@@ -98,7 +98,7 @@ void Game::run()
 		{
 			if (event.type == sf::Event::Closed)
 			{
-				window.close();
+				return -1;
 			}
 
 			if (event.type == sf::Event::KeyPressed)
@@ -180,4 +180,6 @@ void Game::run()
 		// End current frame
 		window.display();
 	}
+	// Exit window if this code is reached
+	return -1;
 }

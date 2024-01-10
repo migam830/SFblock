@@ -1,13 +1,26 @@
+#include "GameScreen.h"
 #include <SFML/Graphics.hpp>
-#include "Game.h"
+#include <vector>
 
 int main()
 {
-	// Create instance of Game class
-	Game g1;
+	// A dynamic array containing pointers to all the screens in the game
+	std::vector<Screen*> screens;
+	// The ID of the current screen
+	int currentScreen = 0;
 
-	// Run while SFML window is open
-	g1.run();
+	sf::RenderWindow window(sf::VideoMode(800, 850), "SFblock");
+	window.setVerticalSyncEnabled(true);
+
+	// Instantiate screens here
+	GameScreen screen1;
+	screens.push_back(&screen1);
+
+	// Run current screen
+	while (currentScreen >= 0)
+	{
+		currentScreen = screens[currentScreen]->run(window);
+	}
 
 	// Return 0 if successful
 	return 0;
