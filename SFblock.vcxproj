@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="src\Block.cpp" />
     <ClCompile Include="src\GameScreen.cpp" />
+    <ClCompile Include="src\HomeScreen.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PlayField.cpp" />
     <ClCompile Include="src\RandomShuffler.cpp" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="src\Block.h" />
     <ClInclude Include="src\GameScreen.h" />
+    <ClInclude Include="src\HomeScreen.h" />
     <ClInclude Include="src\PlayField.h" />
     <ClInclude Include="src\RandomShuffler.h" />
     <ClInclude Include="src\Screen.h" />

@@ -1,4 +1,5 @@
 #include "GameScreen.h"
+#include "HomeScreen.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
 
@@ -13,8 +14,10 @@ int main()
 	window.setVerticalSyncEnabled(true);
 
 	// Instantiate screens here
-	GameScreen screen1;
+	HomeScreen screen1;
 	screens.push_back(&screen1);
+	GameScreen screen2;
+	screens.push_back(&screen2);
 
 	// Run current screen
 	while (currentScreen >= 0)
