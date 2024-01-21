@@ -94,7 +94,7 @@ int GameScreen::run(sf::RenderWindow& window)
 			}
 
 			// Start new game if button is pressed
-			if (newGameButton.checkPressed(event))
+			if (newGameButton.checkPressed(event) && gameOver)
 			{
 				gameOver = false;
 				score = 0;
