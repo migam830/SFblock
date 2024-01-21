@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Block.cpp" />
+    <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\GameScreen.cpp" />
     <ClCompile Include="src\HomeScreen.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Block.h" />
+    <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\GameScreen.h" />
     <ClInclude Include="src\HomeScreen.h" />
     <ClInclude Include="src\PlayField.h" />

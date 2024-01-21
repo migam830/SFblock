@@ -1,5 +1,6 @@
 #pragma once
 #include "Screen.h"
+#include "Button.h"
 #include <SFML/Graphics.hpp>
 
 class HomeScreen : public Screen
@@ -9,9 +10,7 @@ public:
 
 private:
 	// All the UI elements of this screen
-	sf::Font font;
-	sf::RectangleShape gameButton;
-	sf::Text gameButtonText;
+	Button gameButton;
 
 	virtual int run(sf::RenderWindow& window);
 };
