@@ -2,6 +2,17 @@
 
 HomeScreen::HomeScreen() : gameButton(300, 125, 250, 425, "Start Game")
 {
+	// Load font from file
+	if (!font.loadFromFile("res/SourceSans3-Regular.ttf"))
+	{
+		throw "Font not found";
+	}
+
+	titleText.setFont(font);
+	titleText.setPosition(150, 50);
+	titleText.setCharacterSize(150);
+	titleText.setFillColor(sf::Color::Black);
+	titleText.setString("SFblock");
 }
 
 int HomeScreen::run(sf::RenderWindow& window)
@@ -30,6 +41,7 @@ int HomeScreen::run(sf::RenderWindow& window)
 
 		// Draw everything here
 		window.draw(gameButton);
+		window.draw(titleText);
 
 		// End current frame
 		window.display();
