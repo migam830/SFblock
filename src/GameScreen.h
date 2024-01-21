@@ -2,6 +2,7 @@
 #include "Screen.h"
 #include "PlayField.h"
 #include "RandomShuffler.h"
+#include "Button.h"
 #include <SFML/Graphics.hpp>
 
 class GameScreen : public Screen
@@ -40,7 +41,7 @@ private:
 
 	// All the main UI components of the game
 	sf::Text scoreDisplay;
-	sf::Text newGameMessage;
+	Button newGameButton;
 	sf::Font font;
 	PlayField p1;
 

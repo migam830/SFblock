@@ -1,7 +1,7 @@
 #pragma once
 #include "GameScreen.h"
 
-GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), downPressed(false), hardDrop(false), gameOver(true)
+GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), downPressed(false), hardDrop(false), gameOver(true), newGameButton(300, 100, 50, 300, "New Game")
 {
 	// Initialise fall rate
 	fallRate = INITIALFALLRATE;
@@ -18,13 +18,6 @@ GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), do
 	scoreDisplay.setCharacterSize(50);
 	scoreDisplay.setFillColor(sf::Color::Black);
 	scoreDisplay.setString("Score: " + std::to_string(score));
-
-	// Properties of new game message
-	newGameMessage.setPosition(425, 150);
-	newGameMessage.setFont(font);
-	newGameMessage.setCharacterSize(30);
-	newGameMessage.setFillColor(sf::Color::Blue);
-	newGameMessage.setString("Press N to start a new game");
 }
 
 int GameScreen::run(sf::RenderWindow& window)
@@ -70,7 +63,6 @@ int GameScreen::run(sf::RenderWindow& window)
 					{
 						gameOver = true;
 						scoreDisplay.setString("Score: " + std::to_string(score) + "\nGame over");
-						newGameMessage.setString("Press N to start a new game");
 					}
 				}
 			}
@@ -99,6 +91,16 @@ int GameScreen::run(sf::RenderWindow& window)
 			if (event.type == sf::Event::Closed)
 			{
 				return -1;
+			}
+
+			// Start new game if button is pressed
+			if (newGameButton.checkPressed(event))
+			{
+				gameOver = false;
+				score = 0;
+				fallRate = INITIALFALLRATE;
+				p1.init();
+				fallClock.restart();
 			}
 
 			if (event.type == sf::Event::KeyPressed)
@@ -140,17 +142,6 @@ int GameScreen::run(sf::RenderWindow& window)
 				{
 					p1.rotateAntiClockwise();
 				}
-
-				// Starting a new game
-				if (event.key.code == sf::Keyboard::N && gameOver)
-				{
-					gameOver = false;
-					score = 0;
-					fallRate = INITIALFALLRATE;
-					p1.init();
-					newGameMessage.setString("");
-					fallClock.restart();
-				}
 			}
 			if (event.type == sf::Event::KeyReleased)
 			{
@@ -175,7 +166,10 @@ int GameScreen::run(sf::RenderWindow& window)
 		// Draw everything here
 		window.draw(p1);
 		window.draw(scoreDisplay);
-		window.draw(newGameMessage);
+
+		// Only draw new game button if game is over
+		if (gameOver)
+			window.draw(newGameButton);
 
 		// End current frame
 		window.display();
