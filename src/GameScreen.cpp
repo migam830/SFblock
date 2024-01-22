@@ -20,7 +20,7 @@ GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), do
 	scoreDisplay.setString("Score: " + std::to_string(score));
 
 	// Set properties of game instructions
-	gameInstructions.setPosition(425, 100);
+	gameInstructions.setPosition(425, 125);
 	gameInstructions.setFont(font);
 	gameInstructions.setCharacterSize(40);
 	gameInstructions.setFillColor(sf::Color::Blue);
