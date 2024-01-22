@@ -18,6 +18,13 @@ GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), do
 	scoreDisplay.setCharacterSize(50);
 	scoreDisplay.setFillColor(sf::Color::Black);
 	scoreDisplay.setString("Score: " + std::to_string(score));
+
+	// Set properties of game instructions
+	gameInstructions.setPosition(425, 100);
+	gameInstructions.setFont(font);
+	gameInstructions.setCharacterSize(40);
+	gameInstructions.setFillColor(sf::Color::Blue);
+	gameInstructions.setString("Controls:\nMove block: left, right\nRotate block: up, Z\nSoft drop: down\nHard drop: space");
 }
 
 int GameScreen::run(sf::RenderWindow& window)
@@ -166,6 +173,7 @@ int GameScreen::run(sf::RenderWindow& window)
 		// Draw everything here
 		window.draw(p1);
 		window.draw(scoreDisplay);
+		window.draw(gameInstructions);
 
 		// Only draw new game button if game is over
 		if (gameOver)
