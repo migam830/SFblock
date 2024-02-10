@@ -1,5 +1,6 @@
 #pragma once
 #include "GameScreen.h"
+#include "RandomShuffler.h"
 
 GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), downPressed(false), hardDrop(false), gameOver(true), newGameButton(300, 100, 50, 300, "New Game")
 {
@@ -25,6 +26,9 @@ GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), do
 	gameInstructions.setCharacterSize(40);
 	gameInstructions.setFillColor(sf::Color::Blue);
 	gameInstructions.setString("Controls:\nMove block: left, right\nRotate block: up, Z\nSoft drop: down\nHard drop: space");
+
+	// Initialise shuffler pointer
+	currentShuffler.reset(new RandomShuffler);
 }
 
 int GameScreen::run(sf::RenderWindow& window)
@@ -66,7 +70,7 @@ int GameScreen::run(sf::RenderWindow& window)
 						fallRate = 800;
 
 					// Spawn next piece as determined by shuffler
-					if (!p1.spawn(shuffler1.getNextPiece()))
+					if (!p1.spawn(currentShuffler->getNextPiece()))
 					{
 						gameOver = true;
 						scoreDisplay.setString("Score: " + std::to_string(score) + "\nGame over");

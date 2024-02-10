@@ -59,6 +59,9 @@
     <ClInclude Include="src\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Shuffler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\SourceSans3-Regular.ttf">

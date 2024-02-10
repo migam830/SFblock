@@ -167,6 +167,7 @@
     <ClInclude Include="src\PlayField.h" />
     <ClInclude Include="src\RandomShuffler.h" />
     <ClInclude Include="src\Screen.h" />
+    <ClInclude Include="src\Shuffler.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\SourceSans3-Regular.ttf">

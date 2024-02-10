@@ -1,9 +1,10 @@
 #pragma once
 #include "Screen.h"
 #include "PlayField.h"
-#include "RandomShuffler.h"
 #include "Button.h"
+#include "Shuffler.h"
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 class GameScreen : public Screen
 {
@@ -52,8 +53,8 @@ private:
 	sf::Clock softDropClock;
 	sf::Clock fallClock;
 
-	// Shuffler to return next block to be spawned
-	RandomShuffler shuffler1;
+	// Pointer to shuffler which returns next block to be spawned
+	std::unique_ptr<Shuffler> currentShuffler;
 
 	virtual int run(sf::RenderWindow& window);
 };
