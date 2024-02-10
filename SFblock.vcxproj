@@ -158,6 +158,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PlayField.cpp" />
     <ClCompile Include="src\RandomShuffler.cpp" />
+    <ClCompile Include="src\SevenBagShuffler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Block.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="src\PlayField.h" />
     <ClInclude Include="src\RandomShuffler.h" />
     <ClInclude Include="src\Screen.h" />
+    <ClInclude Include="src\SevenBagShuffler.h" />
     <ClInclude Include="src\Shuffler.h" />
   </ItemGroup>
   <ItemGroup>

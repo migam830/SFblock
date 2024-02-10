@@ -1,6 +1,7 @@
 #pragma once
 #include "GameScreen.h"
 #include "RandomShuffler.h"
+#include "SevenBagShuffler.h"
 
 GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), downPressed(false), hardDrop(false), gameOver(true), newGameButton(300, 100, 50, 300, "New Game")
 {
@@ -28,7 +29,7 @@ GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), do
 	gameInstructions.setString("Controls:\nMove block: left, right\nRotate block: up, Z\nSoft drop: down\nHard drop: space");
 
 	// Initialise shuffler pointer
-	currentShuffler.reset(new RandomShuffler);
+	currentShuffler.reset(new SevenBagShuffler);
 }
 
 int GameScreen::run(sf::RenderWindow& window)
@@ -112,6 +113,8 @@ int GameScreen::run(sf::RenderWindow& window)
 				fallRate = INITIALFALLRATE;
 				p1.init();
 				fallClock.restart();
+
+				currentShuffler.reset(new SevenBagShuffler);
 			}
 
 			if (event.type == sf::Event::KeyPressed)

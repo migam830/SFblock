@@ -36,6 +36,9 @@
     <ClCompile Include="src\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SevenBagShuffler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PlayField.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Shuffler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SevenBagShuffler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
