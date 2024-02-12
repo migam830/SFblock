@@ -1,4 +1,3 @@
-#pragma once
 #include "GameScreen.h"
 #include "RandomShuffler.h"
 #include "SevenBagShuffler.h"
