@@ -5,8 +5,9 @@
 class Button : public sf::Drawable
 {
 public:
-	Button(int width, int height, int xPos, int yPos, std::string buttonText);
+	Button(int width, int height, int xPos, int yPos, std::string buttonText, int fontSize = 50);
 	bool checkPressed(sf::Event event);
+	void setText(std::string text);
 
 private:
 	sf::RectangleShape buttonOutline;

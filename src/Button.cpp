@@ -1,6 +1,6 @@
 #include "Button.h"
 
-Button::Button(int width, int height, int xPos, int yPos, std::string inputButtonText)
+Button::Button(int width, int height, int xPos, int yPos, std::string inputButtonText, int fontSize)
 {
 	// Load font from file
 	if (!font.loadFromFile("res/SourceSans3-Regular.ttf"))
@@ -17,7 +17,7 @@ Button::Button(int width, int height, int xPos, int yPos, std::string inputButto
 
 	// Set properties of text elements
 	buttonText.setFont(font);
-	buttonText.setCharacterSize(50);
+	buttonText.setCharacterSize(fontSize);
 	buttonText.setFillColor(sf::Color::Black);
 	buttonText.setString(inputButtonText);
 
@@ -35,6 +35,13 @@ bool Button::checkPressed(sf::Event event)
 		}
 	}
 	return false;
+}
+
+void Button::setText(std::string text)
+{
+	buttonText.setString(text);
+	buttonText.setOrigin(buttonText.getGlobalBounds().getSize() / 2.f + buttonText.getLocalBounds().getPosition());
+	buttonText.setPosition(buttonOutline.getPosition() + (buttonOutline.getSize() / 2.f));
 }
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
