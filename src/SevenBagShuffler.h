@@ -10,7 +10,7 @@ public:
 
 private:
 	// Selection of blocks to shuffle
-	std::array<char, 7> sevenBag = { 'i', 'j', 'l', 'o', 's', 't', 'z' };
+	std::array<char, 7> sevenBag;
 
 	// Index of next block
 	int blockIndex;

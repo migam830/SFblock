@@ -3,6 +3,9 @@
 
 SevenBagShuffler::SevenBagShuffler() : blockIndex(0)
 {
+	// Initialsie seven bag array
+	sevenBag = { 'i', 'j', 'l', 'o', 's', 't', 'z' };
+
 	// Seed the random engine
 	randomEngine.seed(std::chrono::system_clock::now().time_since_epoch().count());
 
