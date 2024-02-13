@@ -23,3 +23,8 @@ char SevenBagShuffler::getNextPiece()
 	blockIndex += 1;
 	return sevenBag[blockIndex - 1];
 }
+
+void SevenBagShuffler::reset()
+{
+	blockIndex = 0;
+}
