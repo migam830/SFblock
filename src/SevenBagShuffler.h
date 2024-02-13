@@ -18,5 +18,5 @@ private:
 	std::default_random_engine randomEngine;
 
 	virtual char getNextPiece();
-	virtual void reset();
+	virtual void init();
 };

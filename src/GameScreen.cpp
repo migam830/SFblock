@@ -120,8 +120,8 @@ int GameScreen::run(sf::RenderWindow& window)
 				p1.init();
 				fallClock.restart();
 
-				// Reset shuffler (only applicable to 7 bag shuffler)
-				currentShuffler->reset();
+				// Initialise shuffler if applicable
+				currentShuffler->init();
 			}
 
 			// Toggle shuffler type if button is pressed
