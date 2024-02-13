@@ -2,10 +2,17 @@
 #include "RandomShuffler.h"
 #include "SevenBagShuffler.h"
 
-GameScreen::GameScreen() : score(0), leftPressed(false), rightPressed(false), downPressed(false), hardDrop(false), gameOver(true), newGameButton(300, 100, 50, 300, "New Game")
+GameScreen::GameScreen() : newGameButton(300, 100, 50, 300, "New Game"), shufflerButton(300, 100, 50, 450, "7 bag")
 {
-	// Initialise fall rate
+	// Initialise attributes
 	fallRate = INITIALFALLRATE;
+	shufflerType = 0;
+	score = 0;
+	leftPressed = false;
+	rightPressed = false;
+	downPressed = false;
+	hardDrop = false;
+	gameOver = true;
 
 	// Load font from file
 	if (!font.loadFromFile("res/SourceSans3-Regular.ttf"))
@@ -113,7 +120,25 @@ int GameScreen::run(sf::RenderWindow& window)
 				p1.init();
 				fallClock.restart();
 
-				currentShuffler.reset(new SevenBagShuffler);
+				// Reset shuffler (only applicable to 7 bag shuffler)
+				currentShuffler->reset();
+			}
+
+			// Toggle shuffler type if button is pressed
+			if (shufflerButton.checkPressed(event) && gameOver)
+			{
+				if (shufflerType == 0)
+				{
+					shufflerType = 1;
+					currentShuffler.reset(new RandomShuffler);
+					shufflerButton.setText("Random");
+				}
+				else
+				{
+					shufflerType = 0;
+					currentShuffler.reset(new SevenBagShuffler);
+					shufflerButton.setText("7 bag");
+				}
 			}
 
 			if (event.type == sf::Event::KeyPressed)
@@ -181,9 +206,12 @@ int GameScreen::run(sf::RenderWindow& window)
 		window.draw(scoreDisplay);
 		window.draw(gameInstructions);
 
-		// Only draw new game button if game is over
+		// Only draw buttons if game is over
 		if (gameOver)
+		{
 			window.draw(newGameButton);
+			window.draw(shufflerButton);
+		}
 
 		// End current frame
 		window.display();

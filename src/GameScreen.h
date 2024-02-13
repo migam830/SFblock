@@ -26,6 +26,9 @@ private:
 	// How fast blocks fall naturally (non-constant, milliseconds, lower is faster)
 	int fallRate;
 
+	// The type of shuffler (0: 7 bag, 1: random)
+	int shufflerType;
+
 	// Fall rate at the start of the game
 	const int INITIALFALLRATE = 1000;
 
@@ -44,6 +47,7 @@ private:
 	sf::Text scoreDisplay;
 	sf::Text gameInstructions;
 	Button newGameButton;
+	Button shufflerButton;
 	sf::Font font;
 	PlayField p1;
 
