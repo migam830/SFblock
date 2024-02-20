@@ -1,5 +1,6 @@
 #include "SevenBagShuffler.h"
 #include <chrono>
+#include <algorithm>
 
 SevenBagShuffler::SevenBagShuffler() : blockIndex(0)
 {
