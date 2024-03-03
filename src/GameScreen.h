@@ -46,6 +46,7 @@ private:
 	// All the main UI components of the game
 	sf::Text scoreDisplay;
 	sf::Text gameInstructions;
+	sf::Text shufflerExplanation;
 	Button newGameButton;
 	Button shufflerButton;
 	sf::Font font;

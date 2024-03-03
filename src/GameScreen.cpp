@@ -34,6 +34,13 @@ GameScreen::GameScreen() : newGameButton(300, 100, 50, 300, "New Game"), shuffle
 	gameInstructions.setFillColor(sf::Color::Blue);
 	gameInstructions.setString("Controls:\nMove block: left, right\nRotate block: up, Z\nSoft drop: down\nHard drop: space");
 
+	// Set properties of shuffler explanation
+	shufflerExplanation.setPosition(425, 400);
+	shufflerExplanation.setFont(font);
+	shufflerExplanation.setCharacterSize(30);
+	shufflerExplanation.setFillColor(sf::Color::Red);
+	shufflerExplanation.setString("7 bag:\nAll seven blocks selected\nbefore any can repeat\nRandom:\nNext block randomly selected");
+
 	// Initialise shuffler pointer
 	currentShuffler.reset(new SevenBagShuffler);
 }
@@ -205,6 +212,7 @@ int GameScreen::run(sf::RenderWindow& window)
 		window.draw(p1);
 		window.draw(scoreDisplay);
 		window.draw(gameInstructions);
+		window.draw(shufflerExplanation);
 
 		// Only draw buttons if game is over
 		if (gameOver)
