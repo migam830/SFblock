@@ -49,6 +49,7 @@ private:
 	sf::Text shufflerExplanation;
 	Button newGameButton;
 	Button shufflerButton;
+	Button backButton;
 	sf::Font font;
 	PlayField p1;
 

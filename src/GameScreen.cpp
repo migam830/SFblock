@@ -2,7 +2,7 @@
 #include "RandomShuffler.h"
 #include "SevenBagShuffler.h"
 
-GameScreen::GameScreen() : newGameButton(300, 100, 50, 300, "New Game"), shufflerButton(300, 100, 50, 450, "7 bag")
+GameScreen::GameScreen() : newGameButton(300, 100, 50, 300, "New Game"), shufflerButton(300, 100, 50, 450, "7 bag"), backButton(300, 100, 450, 700, "Home Screen")
 {
 	// Initialise attributes
 	fallRate = INITIALFALLRATE;
@@ -148,6 +148,12 @@ int GameScreen::run(sf::RenderWindow& window)
 				}
 			}
 
+			// Return back to the home screen if button is pressed
+			if (backButton.checkPressed(event) && gameOver)
+			{
+				return 0;
+			}
+
 			if (event.type == sf::Event::KeyPressed)
 			{
 				// Block movement
@@ -219,6 +225,7 @@ int GameScreen::run(sf::RenderWindow& window)
 		{
 			window.draw(newGameButton);
 			window.draw(shufflerButton);
+			window.draw(backButton);
 		}
 
 		// End current frame
